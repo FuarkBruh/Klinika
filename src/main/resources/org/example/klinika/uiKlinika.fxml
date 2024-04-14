@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.40140374331550793, 0.5802139037433154" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <Text layoutX="81.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane pacjenta" />
-            <TextField layoutX="45.0" layoutY="77.0" />
-            <TextField layoutX="45.0" layoutY="128.0" />
-            <TextField layoutX="45.0" layoutY="187.0" />
-            <TextField layoutX="46.0" layoutY="248.0" />
-         </children></AnchorPane>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <Button layoutY="345.0" mnemonicParsing="false" text="Generuj do PDF" />
-         </children></AnchorPane>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <TextField layoutX="50.0" layoutY="68.0" />
-            <TextField layoutX="51.0" layoutY="126.0" />
-            <TextField layoutX="52.0" layoutY="187.0" />
-            <TextField layoutX="50.0" layoutY="248.0" />
-            <Text layoutX="92.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane wizyty" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <!--Teksty głowne-->
+        <Text layoutX="84.0" layoutY="45.0" text="Dane pacjenta" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="23.41796875">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+
+        <Text layoutX="397.0" layoutY="44.0" text="Dane wizyty" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="22.41796875">
+            <font>
+                <Font size="20.0" />
+            </font></Text>
+
+        <TextField layoutX="48.0" layoutY="60.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="60.0" />
+        <TextField layoutX="48.0" layoutY="105.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="105.0" />
+        <TextField layoutX="48.0" layoutY="152.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="152.0" />
+        <TextField layoutX="48.0" layoutY="200.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="200.0" />
+
+        <!--Przycisk do generacji raportu PDF-->
+        <Button layoutX="212.0" layoutY="310.0" prefHeight="58.0" prefWidth="176.0" text="Generuj do PDF"
+                AnchorPane.bottomAnchor="31.600000000000023" AnchorPane.leftAnchor="212.0"
+                fx:id="przyciskPDF">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+        <!--Data wizyty-->
+      <DatePicker layoutX="328.0" layoutY="59.0" prefHeight="27.0" prefWidth="137.0" fx:id="dataWizyty"/>
+        <!--Godzina wizyty-->
+      <ComboBox layoutX="479.0" layoutY="59.0" prefHeight="26.0" prefWidth="106.0" fx:id="godzinaWizyty"/>
+        <!--Rodzaj wizyty-->
+      <ComboBox layoutX="350.0" layoutY="104.0" prefHeight="26.0" prefWidth="200.0" fx:id="rodzajWizyty"/>
+        <!--Lekarz-->
+      <ComboBox layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" fx:id="lekarz"/>
+
+    </children>
+</AnchorPane>
