@@ -8,40 +8,213 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
         <!--Teksty głowne-->
-        <Text layoutX="84.0" layoutY="45.0" text="Dane pacjenta" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="23.41796875">
-         <font>
-            <Font size="20.0" />
-         </font></Text>
-
-        <Text layoutX="397.0" layoutY="44.0" text="Dane wizyty" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="22.41796875">
+        <Text layoutX="84.0" layoutY="45.0" text="Dane pacjenta">
             <font>
                 <Font size="20.0" />
-            </font></Text>
+            </font>
+        </Text>
 
-        <TextField layoutX="48.0" layoutY="60.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="60.0" />
-        <TextField layoutX="48.0" layoutY="105.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="105.0" />
-        <TextField layoutX="48.0" layoutY="152.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="152.0" />
-        <TextField layoutX="48.0" layoutY="200.0" prefWidth="200.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="200.0" />
+        <Text layoutX="397.0" layoutY="44.0" text="Dane wizyty">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
 
-        <!--Przycisk do generacji raportu PDF-->
+        <TextField layoutX="48.0" layoutY="60.0" prefWidth="200.0"/>
+        <TextField layoutX="48.0" layoutY="105.0" prefWidth="200.0"/>
+        <TextField layoutX="48.0" layoutY="152.0" prefWidth="200.0"/>
+        <TextField layoutX="48.0" layoutY="200.0" prefWidth="200.0"/>
+
+        <!-- Przycisk do generacji raportu PDF -->
         <Button layoutX="212.0" layoutY="310.0" prefHeight="58.0" prefWidth="176.0" text="Generuj do PDF"
-                AnchorPane.bottomAnchor="31.600000000000023" AnchorPane.leftAnchor="212.0"
                 fx:id="przyciskPDF">
-         <font>
-            <Font size="15.0" />
-         </font></Button>
-        <!--Data wizyty-->
-      <DatePicker layoutX="328.0" layoutY="59.0" prefHeight="27.0" prefWidth="137.0" fx:id="dataWizyty"/>
-        <!--Godzina wizyty-->
-      <ComboBox layoutX="479.0" layoutY="59.0" prefHeight="26.0" prefWidth="106.0" fx:id="godzinaWizyty"/>
-        <!--Rodzaj wizyty-->
-      <ComboBox layoutX="350.0" layoutY="104.0" prefHeight="26.0" prefWidth="200.0" fx:id="rodzajWizyty"/>
-        <!--Lekarz-->
-      <ComboBox layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" fx:id="lekarz"/>
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
 
+        <!-- Data wizyty -->
+        <DatePicker layoutX="328.0" layoutY="59.0" prefHeight="27.0" prefWidth="137.0" fx:id="dataWizyty"/>
+
+        <!-- Godzina wizyty -->
+        <ComboBox layoutX="479.0" layoutY="59.0" prefHeight="26.0" prefWidth="106.0" fx:id="godzinaWizyty">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="00:00"/>
+                    <String fx:value="00:10"/>
+                    <String fx:value="00:20"/>
+                    <String fx:value="00:30"/>
+                    <String fx:value="00:40"/>
+                    <String fx:value="00:50"/>
+                    <String fx:value="01:00"/>
+                    <String fx:value="01:10"/>
+                    <String fx:value="01:20"/>
+                    <String fx:value="01:30"/>
+                    <String fx:value="01:40"/>
+                    <String fx:value="01:50"/>
+                    <String fx:value="02:00"/>
+                    <String fx:value="02:10"/>
+                    <String fx:value="02:20"/>
+                    <String fx:value="02:30"/>
+                    <String fx:value="02:40"/>
+                    <String fx:value="02:50"/>
+                    <String fx:value="03:00"/>
+                    <String fx:value="03:10"/>
+                    <String fx:value="03:20"/>
+                    <String fx:value="03:30"/>
+                    <String fx:value="03:40"/>
+                    <String fx:value="03:50"/>
+                    <String fx:value="04:00"/>
+                    <String fx:value="04:10"/>
+                    <String fx:value="04:20"/>
+                    <String fx:value="04:30"/>
+                    <String fx:value="04:40"/>
+                    <String fx:value="04:50"/>
+                    <String fx:value="05:00"/>
+                    <String fx:value="05:10"/>
+                    <String fx:value="05:20"/>
+                    <String fx:value="05:30"/>
+                    <String fx:value="05:40"/>
+                    <String fx:value="05:50"/>
+                    <String fx:value="06:00"/>
+                    <String fx:value="06:10"/>
+                    <String fx:value="06:20"/>
+                    <String fx:value="06:30"/>
+                    <String fx:value="06:40"/>
+                    <String fx:value="06:50"/>
+                    <String fx:value="07:00"/>
+                    <String fx:value="07:10"/>
+                    <String fx:value="07:20"/>
+                    <String fx:value="07:30"/>
+                    <String fx:value="07:40"/>
+                    <String fx:value="07:50"/>
+                    <String fx:value="08:00"/>
+                    <String fx:value="08:10"/>
+                    <String fx:value="08:20"/>
+                    <String fx:value="08:30"/>
+                    <String fx:value="08:40"/>
+                    <String fx:value="08:50"/>
+                    <String fx:value="09:00"/>
+                    <String fx:value="09:10"/>
+                    <String fx:value="09:20"/>
+                    <String fx:value="09:30"/>
+                    <String fx:value="09:40"/>
+                    <String fx:value="09:50"/>
+                    <String fx:value="10:00"/>
+                    <String fx:value="10:10"/>
+                    <String fx:value="10:20"/>
+                    <String fx:value="10:30"/>
+                    <String fx:value="10:40"/>
+                    <String fx:value="10:50"/>
+                    <String fx:value="11:00"/>
+                    <String fx:value="11:10"/>
+                    <String fx:value="11:20"/>
+                    <String fx:value="11:30"/>
+                    <String fx:value="11:40"/>
+                    <String fx:value="11:50"/>
+                    <String fx:value="12:00"/>
+                    <String fx:value="12:10"/>
+                    <String fx:value="12:20"/>
+                    <String fx:value="12:30"/>
+                    <String fx:value="12:40"/>
+                    <String fx:value="12:50"/>
+                    <String fx:value="13:00"/>
+                    <String fx:value="13:10"/>
+                    <String fx:value="13:20"/>
+                    <String fx:value="13:30"/>
+                    <String fx:value="13:40"/>
+                    <String fx:value="13:50"/>
+                    <String fx:value="14:00"/>
+                    <String fx:value="14:10"/>
+                    <String fx:value="14:20"/>
+                    <String fx:value="14:30"/>
+                    <String fx:value="14:40"/>
+                    <String fx:value="14:50"/>
+                    <String fx:value="15:00"/>
+                    <String fx:value="15:10"/>
+                    <String fx:value="15:20"/>
+                    <String fx:value="15:30"/>
+                    <String fx:value="15:40"/>
+                    <String fx:value="15:50"/>
+                    <String fx:value="16:00"/>
+                    <String fx:value="16:10"/>
+                    <String fx:value="16:20"/>
+                    <String fx:value="16:30"/>
+                    <String fx:value="16:40"/>
+                    <String fx:value="16:50"/>
+                    <String fx:value="17:00"/>
+                    <String fx:value="17:10"/>
+                    <String fx:value="17:20"/>
+                    <String fx:value="17:30"/>
+                    <String fx:value="17:40"/>
+                    <String fx:value="17:50"/>
+                    <String fx:value="18:00"/>
+                    <String fx:value="18:10"/>
+                    <String fx:value="18:20"/>
+                    <String fx:value="18:30"/>
+                    <String fx:value="18:40"/>
+                    <String fx:value="18:50"/>
+                    <String fx:value="19:00"/>
+                    <String fx:value="19:10"/>
+                    <String fx:value="19:20"/>
+                    <String fx:value="19:30"/>
+                    <String fx:value="19:40"/>
+                    <String fx:value="19:50"/>
+                    <String fx:value="20:00"/>
+                    <String fx:value="20:10"/>
+                    <String fx:value="20:20"/>
+                    <String fx:value="20:30"/>
+                    <String fx:value="20:40"/>
+                    <String fx:value="20:50"/>
+                    <String fx:value="21:00"/>
+                    <String fx:value="21:10"/>
+                    <String fx:value="21:20"/>
+                    <String fx:value="21:30"/>
+                    <String fx:value="21:40"/>
+                    <String fx:value="21:50"/>
+                    <String fx:value="22:00"/>
+                    <String fx:value="22:10"/>
+                    <String fx:value="22:20"/>
+                    <String fx:value="22:30"/>
+                    <String fx:value="22:40"/>
+                    <String fx:value="22:50"/>
+                    <String fx:value="23:00"/>
+                    <String fx:value="23:10"/>
+                    <String fx:value="23:20"/>
+                    <String fx:value="23:30"/>
+                    <String fx:value="23:40"/>
+                    <String fx:value="23:50"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <!--Rodzaj wizyty-->
+        <ComboBox layoutX="350.0" layoutY="104.0" prefHeight="26.0" prefWidth="200.0" fx:id="rodzajWizyty">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Wizyta ogólna dorośli"/>
+                    <String fx:value="Analiza wyników badań"/>
+                    <String fx:value="Przedłużenie recepty"/>
+                    <String fx:value="Pediatria"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <!-- Lekarz -->
+        <ComboBox layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" fx:id="lekarz">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Janine Kowalska"/>
+                    <String fx:value="Jan Jędrzejczyk"/>
+                    <String fx:value="Jakub Nienormalny"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
     </children>
 </AnchorPane>
