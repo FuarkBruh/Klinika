@@ -22,6 +22,7 @@ public class GeneratorPDF {
             document.addPage(page);
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                //Plik ttf do czcionki musi być dodany ręcznie z powodu błędów
                 contentStream.setFont(PDType0Font.load(document, new File("TimesNewRoman.ttf")), 12);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(50, 700);
@@ -37,11 +38,10 @@ public class GeneratorPDF {
 
                 // Sprawdź czy data została wybrana przed próbą sformatowania
                 LocalDate selectedDate = dataWizyty.getValue();
+                contentStream.newLineAtOffset(0, -20);
                 if (selectedDate != null) {
-                    contentStream.newLineAtOffset(0, -20);
                     contentStream.showText("Data wizyty: " + selectedDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                 } else {
-                    contentStream.newLineAtOffset(0, -20);
                     contentStream.showText("Data wizyty: [Nie wybrano]");
                 }
 

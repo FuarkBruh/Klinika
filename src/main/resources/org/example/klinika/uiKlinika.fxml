@@ -10,7 +10,8 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.klinika.ControllerKlinika">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.klinika.ControllerKlinika">
 
     <children>
         <!--Teksty głowne-->
@@ -42,10 +43,12 @@
         </Button>
 
         <!-- Data wizyty -->
-        <DatePicker layoutX="328.0" layoutY="59.0" prefHeight="27.0" prefWidth="137.0" fx:id="dataWizyty" promptText="Data wizyty"/>
+        <DatePicker layoutX="328.0" layoutY="59.0" prefHeight="27.0" prefWidth="137.0" fx:id="dataWizyty"
+                    promptText="Data wizyty"/>
 
         <!-- Godzina wizyty -->
-        <ComboBox layoutX="479.0" layoutY="59.0" prefHeight="26.0" prefWidth="106.0" fx:id="godzinaWizyty" promptText="Godzina">
+        <ComboBox layoutX="479.0" layoutY="59.0" prefHeight="26.0" prefWidth="106.0" fx:id="godzinaWizyty"
+                  promptText="Godzina">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="00:00"/>
@@ -197,7 +200,8 @@
         </ComboBox>
 
         <!--Rodzaj wizyty-->
-        <ComboBox layoutX="350.0" layoutY="104.0" prefHeight="26.0" prefWidth="200.0" fx:id="rodzajWizyty" promptText="Rodzaj wizyty">
+        <ComboBox layoutX="350.0" layoutY="104.0" prefHeight="26.0" prefWidth="200.0" fx:id="rodzajWizyty"
+                  promptText="Rodzaj wizyty">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Wizyta ogólna dorośli"/>
@@ -209,7 +213,8 @@
         </ComboBox>
 
         <!-- Lekarz -->
-        <ComboBox layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" fx:id="lekarz" promptText="Lekarz">
+        <ComboBox layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" fx:id="lekarz"
+                  promptText="Lekarz">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Janine Kowalska"/>
