@@ -35,6 +35,7 @@ public class ControllerKlinika {
                 ObservableList<String> items = lekarz.getItems();
 
                 // Wyczyszczenie listy i dodanie odpowiednich elementów w zależności od rodzaju wizyty
+                // Wiem, że bez sensu trochę to wygląda, ale działa i działać będzie :)
                 items.clear();
                 switch (rodzajWizyty) {
                         case "Analiza wyników badań":
