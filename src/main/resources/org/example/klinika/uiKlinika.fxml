@@ -216,8 +216,9 @@
         <ComboBox layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" fx:id="lekarz"
                   promptText="Lekarz">
             <items>
+                <!-- To w sumie nie jest potrzebne, ale niech będzie -->
                 <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Janine Kowalska"/>
+                    <String fx:value="Janina Kowalska"/>
                     <String fx:value="Jan Jędrzejczyk"/>
                     <String fx:value="Jakub Nienormalny"/>
                 </FXCollections>

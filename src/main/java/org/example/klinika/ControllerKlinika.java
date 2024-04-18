@@ -1,5 +1,6 @@
 package org.example.klinika;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -26,6 +27,37 @@ public class ControllerKlinika {
         private ComboBox<String> rodzajWizyty;
         @FXML
         private ComboBox<String> lekarz;
+        @FXML
+        protected void initialize() {
+                rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
+        }
+        protected void specjalizacjaLekarza(String rodzajWizyty) {
+                ObservableList<String> items = lekarz.getItems();
+
+                // Wyczyszczenie listy i dodanie odpowiednich elementów w zależności od rodzaju wizyty
+                items.clear();
+                switch (rodzajWizyty) {
+                        case "Analiza wyników badań":
+                                items.add("Jakub Nienormalny");
+                                items.add("Jan Jędrzejczyk");
+                                break;
+                        case "Wizyta ogólna dorośli":
+                                items.add("Jan Jędrzejczyk");
+                                break;
+                        case "Pediatria":
+                                items.add("Jakub Nienormalny");
+                                break;
+                        case "Przedłużenie recepty":
+                                items.add("Janina Kowalska");
+                                if (!items.contains("Jakub Nienormalny")) {
+                                        items.add("Jakub Nienormalny");
+                                }
+                                if (!items.contains("Jan Jędrzejczyk")) {
+                                        items.add("Jan Jędrzejczyk");
+                                }
+                                break;
+                }
+        }
 
         @FXML
         protected void onGenerujButtonClick() throws IOException {
