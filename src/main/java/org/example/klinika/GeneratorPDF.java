@@ -1,5 +1,6 @@
 package org.example.klinika;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -14,6 +15,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class GeneratorPDF {
+    private static void informacjaSukces() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sukces");
+        alert.setHeaderText(null);
+        alert.setContentText("Zapisano do pliku PDF informacje o wizycie!");
+        alert.showAndWait();
+    }
     public static void generatePDF(TextField imiePacjenta, TextField nazwiskoPacjenta, TextField ulicaPacjenta,
                                    TextField miastoPacjenta, TextField kodPocztowyPacjenta, DatePicker dataWizyty,
                                    ComboBox<String> godzinaWizyty, ComboBox<String> rodzajWizyty, ComboBox<String> lekarz) {
@@ -22,7 +30,8 @@ public class GeneratorPDF {
             document.addPage(page);
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                //Plik ttf do czcionki musi być dodany ręcznie z powodu błędów
+                //Plik ttf do czcionki musi być dodany ręcznie z powodu błędów z tą biblioteką, bo niby ma swoje
+                //wewnętrzne czcionki, ale trudno się do nich dostać
                 contentStream.setFont(PDType0Font.load(document, new File("TimesNewRoman.ttf")), 12);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(50, 700);
@@ -56,6 +65,9 @@ public class GeneratorPDF {
             }
 
             document.save("terminWizyty.pdf");
+
+            informacjaSukces();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

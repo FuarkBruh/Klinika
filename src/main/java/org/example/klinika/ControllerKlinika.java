@@ -2,11 +2,7 @@ package org.example.klinika;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-
-import java.io.IOException;
+import javafx.scene.control.*;
 
 public class ControllerKlinika {
         @FXML
@@ -27,6 +23,8 @@ public class ControllerKlinika {
         private ComboBox<String> rodzajWizyty;
         @FXML
         private ComboBox<String> lekarz;
+        @FXML
+        private Label brakDanychWiadomosc;
         @FXML
         protected void initialize() {
                 rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
@@ -59,10 +57,27 @@ public class ControllerKlinika {
                                 break;
                 }
         }
+        @FXML
+        protected void wyswietlWiadomoscBrakDanych() {
+                brakDanychWiadomosc.setVisible(true);
+        }
+
+        protected void usunWiadomoscBrakDanych() {
+                brakDanychWiadomosc.setVisible(false);
+        }
 
         @FXML
-        protected void onGenerujButtonClick() throws IOException {
-            GeneratorPDF.generatePDF(imiePacjenta, nazwiskoPacjenta, ulicaPacjenta, miastoPacjenta, kodPocztowyPacjenta,
-                    dataWizyty, godzinaWizyty, rodzajWizyty, lekarz);
+        protected void onGenerujButtonClick(){
+                if(imiePacjenta.getText().isEmpty() || nazwiskoPacjenta.getText().isEmpty() || ulicaPacjenta.getText().isEmpty() ||
+                        miastoPacjenta.getText().isEmpty() || kodPocztowyPacjenta.getText().isEmpty() || dataWizyty.getValue() == null ||
+                        godzinaWizyty.getValue() == null || rodzajWizyty.getValue() == null || lekarz.getValue() == null) {
+                        wyswietlWiadomoscBrakDanych();
+                }
+                else {
+                        GeneratorPDF.generatePDF(imiePacjenta, nazwiskoPacjenta, ulicaPacjenta,
+                                miastoPacjenta, kodPocztowyPacjenta,
+                                dataWizyty, godzinaWizyty, rodzajWizyty, lekarz);
+                        usunWiadomoscBrakDanych();
+                }
         }
     }

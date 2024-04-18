@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+//W sumie tutaj nic nie robiłem, tylko plik fxml wskazałem
 public class StarterKlinika extends Application {
     @Override
     public void start(Stage stage) throws IOException {
