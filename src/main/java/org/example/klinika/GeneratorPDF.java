@@ -39,9 +39,9 @@ public class GeneratorPDF {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Nazwisko: " + nazwiskoPacjenta.getText());
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("ul. : " + ulicaPacjenta.getText());
+                contentStream.showText("ul. " + ulicaPacjenta.getText());
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Miasto: : " + miastoPacjenta.getText());
+                contentStream.showText("Miasto: " + miastoPacjenta.getText());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Kod pocztowy: " + kodPocztowyPacjenta.getText());
 
@@ -64,7 +64,11 @@ public class GeneratorPDF {
                 contentStream.endText();
             }
 
-            document.save("terminWizyty.pdf");
+            LocalDate data = dataWizyty.getValue();
+            String dataString = data.toString();
+            String nazwaPliku = imiePacjenta.getText() + "_"+ nazwiskoPacjenta.getText() + dataString;
+
+            document.save(nazwaPliku + ".pdf");
 
             informacjaSukces();
 

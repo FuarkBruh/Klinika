@@ -6,113 +6,137 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.klinika.ControllerKlinika">
+<GridPane alignment="CENTER" prefHeight="484.0" prefWidth="828.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.klinika.ControllerKlinika">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.19998779296876" minWidth="10.0" prefWidth="42.40000762939454" />
+       <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.5999755859375" minWidth="400.0" prefWidth="605.5999755859375" />
+       <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.60007324218748" minWidth="10.0" prefWidth="97.80002441406248" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="50.0" minHeight="10.0" vgrow="SOMETIMES" />
+       <RowConstraints maxHeight="400.0" minHeight="10.0" vgrow="SOMETIMES" />
+       <RowConstraints maxHeight="50.0" minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <SplitPane dividerPositions="0.7908719346049046" maxHeight="200.0" minHeight="300.0" minWidth="600.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: lightblue; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 2.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+          <HBox>
+              <VBox alignment="TOP_CENTER" maxHeight="200.0" maxWidth="300.0" minHeight="200.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" spacing="10.0">
+                  <!--Teksty głowne-->
+                  <Text layoutX="65.0" layoutY="47.0" text="Dane pacjenta">
+                      <font>
+                          <Font size="20.0" />
+                      </font>
+                  </Text>
 
-    <!--Teksty głowne-->
-    <Text layoutX="84.0" layoutY="45.0" text="Dane pacjenta">
-        <font>
-            <Font size="20.0"/>
-        </font>
-    </Text>
+                  <!--Dane pacjenta-->
+                  <TextField fx:id="imiePacjenta" layoutX="29.0" layoutY="62.0" maxWidth="250.0" prefWidth="230.0" promptText="Imię" />
+                  <TextField fx:id="nazwiskoPacjenta" layoutX="29.0" layoutY="107.0" maxWidth="250.0" prefWidth="200.0" promptText="Nazwisko" />
+                  <TextField fx:id="ulicaPacjenta" layoutX="29.0" layoutY="154.0" maxWidth="250.0" prefWidth="200.0" promptText="Ulica" />
+               <HBox maxWidth="250.0" spacing="5.0">
+                  <children>
+                        <TextField fx:id="miastoPacjenta" maxWidth="250.0" prefHeight="26.0" prefWidth="185.0" promptText="Miasto" />
+                        <TextField fx:id="kodPocztowyPacjenta" maxWidth="150.0" prefHeight="26.0" prefWidth="123.0" promptText="Kod pocztowy" />
+                  </children>
+               </HBox>
+              </VBox>
 
-    <Text layoutX="397.0" layoutY="44.0" text="Dane wizyty">
-        <font>
-            <Font size="20.0"/>
-        </font>
-    </Text>
+              <VBox alignment="TOP_CENTER" maxHeight="200.0" maxWidth="300.0" minHeight="200.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" spacing="10.0">
+                  <Text layoutX="381.0" layoutY="46.0" text="Dane wizyty">
+                      <font>
+                          <Font size="20.0" />
+                      </font>
+                  </Text>
+               <HBox alignment="TOP_CENTER" maxWidth="250.0">
+                  <children>
+                        <!-- Data wizyty -->
+                        <DatePicker fx:id="dataWizyty" prefHeight="27.0" prefWidth="178.0" promptText="Data wizyty" />
+                        <!-- Godzina wizyty (idiotycznie to wygląda, wiem, nie warto rozwijać tej listy :) ) -->
+                        <ComboBox fx:id="godzinaWizyty" prefHeight="26.0" prefWidth="113.0" promptText="Godzina">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="08:00" />
+                                    <String fx:value="08:20" />
+                                    <String fx:value="08:40" />
+                                    <String fx:value="09:00" />
+                                    <String fx:value="09:20" />
+                                    <String fx:value="09:40" />
+                                    <String fx:value="10:00" />
+                                    <String fx:value="10:20" />
+                                    <String fx:value="10:40" />
+                                    <String fx:value="11:00" />
+                                    <String fx:value="11:20" />
+                                    <String fx:value="11:40" />
+                                    <String fx:value="12:00" />
+                                    <String fx:value="12:20" />
+                                    <String fx:value="12:40" />
+                                    <String fx:value="13:00" />
+                                    <String fx:value="13:20" />
+                                    <String fx:value="13:40" />
+                                    <String fx:value="14:00" />
+                                    <String fx:value="14:20" />
+                                    <String fx:value="14:40" />
+                                    <String fx:value="15:00" />
+                                    <String fx:value="15:20" />
+                                    <String fx:value="15:40" />
+                                    <String fx:value="16:00" />
+                                    <String fx:value="16:20" />
+                                    <String fx:value="16:40" />
+                                    <String fx:value="17:00" />
+                                    <String fx:value="17:20" />
+                                    <String fx:value="17:40" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                  </children>
+               </HBox>
+                  <!--Rodzaj wizyty-->
+                  <ComboBox fx:id="rodzajWizyty" layoutX="335.0" layoutY="107.0" prefHeight="26.0" prefWidth="250.0" promptText="Rodzaj wizyty">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Wizyta ogólna dorośli" />
+                              <String fx:value="Analiza wyników badań" />
+                              <String fx:value="Przedłużenie recepty" />
+                              <String fx:value="Pediatria" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
 
-    <!--Dane pacjenta-->
-    <TextField fx:id="imiePacjenta" layoutX="48.0" layoutY="60.0" prefWidth="200.0" promptText="Imię"/>
-    <TextField fx:id="nazwiskoPacjenta" layoutX="48.0" layoutY="105.0" prefWidth="200.0" promptText="Nazwisko"/>
-    <TextField fx:id="ulicaPacjenta" layoutX="48.0" layoutY="152.0" prefWidth="200.0" promptText="Ulica"/>
-    <TextField fx:id="miastoPacjenta" layoutX="48.0" layoutY="200.0" prefWidth="200.0" promptText="Miasto"/>
-    <TextField fx:id="kodPocztowyPacjenta" layoutX="48.0" layoutY="250.0" prefWidth="200.0" promptText="Kod pocztowy"/>
+                  <!-- Lekarz -->
+                  <ComboBox fx:id="lekarz" layoutX="334.0" layoutY="155.0" prefHeight="26.0" prefWidth="250.0" promptText="Lekarz">
+                      <items>
+                          <!-- To w sumie nie jest potrzebne, ale niech będzie -->
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Janina Kowalska" />
+                              <String fx:value="Jan Jędrzejczyk" />
+                              <String fx:value="Jakub Nienormalny" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+                  <Label fx:id="brakDanychWiadomosc" layoutX="275.0" layoutY="226.0" prefHeight="70.0" prefWidth="296.0" text="Proszę wprowadzić WSZYSTKIE dane" textFill="RED" visible="false">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Label>
+              </VBox>
+          </HBox>
+                   <!-- Przycisk do generacji raportu PDF -->
+          <Button layoutX="225.0" layoutY="310.0" onAction="#onGenerujButtonClick" prefHeight="58.0" prefWidth="176.0" text="Generuj do PDF">
+              <font>
+                  <Font size="15.0" />
+              </font>
+          </Button>
+      
 
-    <!-- Przycisk do generacji raportu PDF -->
-    <Button layoutX="212.0" layoutY="310.0" onAction="#onGenerujButtonClick" prefHeight="58.0" prefWidth="176.0"
-            text="Generuj do PDF">
-        <font>
-            <Font size="15.0"/>
-        </font>
-    </Button>
-
-    <!-- Data wizyty -->
-    <DatePicker fx:id="dataWizyty" layoutX="328.0" layoutY="59.0" prefHeight="27.0" prefWidth="137.0"
-                promptText="Data wizyty"/>
-
-    <!-- Godzina wizyty (idiotycznie to wygląda, wiem, nie warto rozwijać tej listy :) ) -->
-    <ComboBox fx:id="godzinaWizyty" layoutX="479.0" layoutY="59.0" prefHeight="26.0" prefWidth="106.0"
-              promptText="Godzina">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="08:00"/>
-                <String fx:value="08:20"/>
-                <String fx:value="08:40"/>
-                <String fx:value="09:00"/>
-                <String fx:value="09:20"/>
-                <String fx:value="09:40"/>
-                <String fx:value="10:00"/>
-                <String fx:value="10:20"/>
-                <String fx:value="10:40"/>
-                <String fx:value="11:00"/>
-                <String fx:value="11:20"/>
-                <String fx:value="11:40"/>
-                <String fx:value="12:00"/>
-                <String fx:value="12:20"/>
-                <String fx:value="12:40"/>
-                <String fx:value="13:00"/>
-                <String fx:value="13:20"/>
-                <String fx:value="13:40"/>
-                <String fx:value="14:00"/>
-                <String fx:value="14:20"/>
-                <String fx:value="14:40"/>
-                <String fx:value="15:00"/>
-                <String fx:value="15:20"/>
-                <String fx:value="15:40"/>
-                <String fx:value="16:00"/>
-                <String fx:value="16:20"/>
-                <String fx:value="16:40"/>
-                <String fx:value="17:00"/>
-                <String fx:value="17:20"/>
-                <String fx:value="17:40"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
-
-    <!--Rodzaj wizyty-->
-    <ComboBox fx:id="rodzajWizyty" layoutX="350.0" layoutY="104.0" prefHeight="26.0" prefWidth="200.0"
-              promptText="Rodzaj wizyty">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Wizyta ogólna dorośli"/>
-                <String fx:value="Analiza wyników badań"/>
-                <String fx:value="Przedłużenie recepty"/>
-                <String fx:value="Pediatria"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
-
-    <!-- Lekarz -->
-    <ComboBox fx:id="lekarz" layoutX="349.0" layoutY="152.0" prefHeight="26.0" prefWidth="200.0" promptText="Lekarz">
-        <items>
-            <!-- To w sumie nie jest potrzebne, ale niech będzie -->
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Janina Kowalska"/>
-                <String fx:value="Jan Jędrzejczyk"/>
-                <String fx:value="Jakub Nienormalny"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
-    <Label fx:id="brakDanychWiadomosc" layoutX="275.0" layoutY="226.0" prefHeight="27.0" prefWidth="296.0"
-           text="Proszę wprowadzić WSZYSTKIE dane" textFill="RED" visible="false">
-        <font>
-          <Font size="18.0"/>
-        </font>
-    </Label>
-</AnchorPane>
+      </SplitPane>
+   </children>
+</GridPane>
