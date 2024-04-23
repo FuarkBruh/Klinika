@@ -3,6 +3,9 @@ package org.example.klinika;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.converter.LocalDateStringConverter;
+
+import java.time.LocalDate;
 
 public class ControllerKlinika {
         @FXML
@@ -27,8 +30,19 @@ public class ControllerKlinika {
         private Label brakDanychWiadomosc;
         @FXML
         protected void initialize() {
+                // Ustawiamy minimalną datę na dzień dzisiejszy
+                dataWizyty.setConverter(new LocalDateStringConverter());
+                dataWizyty.setDayCellFactory(picker -> new DateCell() {
+                        public void updateItem(LocalDate date, boolean empty) {
+                                super.updateItem(date, empty);
+                                setDisable(empty || date.compareTo(LocalDate.now()) < 0);
+                        }
+                });
+
                 rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
         }
+
+
         protected void specjalizacjaLekarza(String rodzajWizyty) {
                 ObservableList<String> items = lekarz.getItems();
 
