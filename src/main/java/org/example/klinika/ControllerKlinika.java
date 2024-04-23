@@ -15,6 +15,10 @@ public class ControllerKlinika {
         @FXML
         private TextField ulicaPacjenta;
         @FXML
+        private TextField nrBudynku;
+        @FXML
+        private TextField nrMieszkania;
+        @FXML
         private TextField miastoPacjenta;
         @FXML
         private TextField kodPocztowyPacjenta;
@@ -30,17 +34,37 @@ public class ControllerKlinika {
         private Label brakDanychWiadomosc;
         @FXML
         protected void initialize() {
+                TextFormatter<String> imieFormatter = textFormatterLitery();
+                TextFormatter<String> nazwiskoFormatter = textFormatterLitery();
+                TextFormatter<String> ulicaFormatter = textFormatterLitery();
+                TextFormatter<String> miastoFormatter = textFormatterLitery();
+
+                imiePacjenta.setTextFormatter(imieFormatter);
+                nazwiskoPacjenta.setTextFormatter(nazwiskoFormatter);
+                ulicaPacjenta.setTextFormatter(ulicaFormatter);
+                miastoPacjenta.setTextFormatter(miastoFormatter);
+
                 // Ustawiamy minimalną datę na dzień dzisiejszy
                 dataWizyty.setConverter(new LocalDateStringConverter());
                 dataWizyty.setDayCellFactory(picker -> new DateCell() {
                         public void updateItem(LocalDate date, boolean empty) {
                                 super.updateItem(date, empty);
-                                setDisable(empty || date.compareTo(LocalDate.now()) < 0);
+                                setDisable(empty || date.isBefore(LocalDate.now()));
                         }
                 });
 
                 rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
         }
+
+        private TextFormatter<String> textFormatterLitery() {
+                return new TextFormatter<>(change -> {
+                        if (change.getText().matches("[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*")) {
+                                return change;
+                        }
+                        return null;
+                });
+        }
+
 
 
         protected void specjalizacjaLekarza(String rodzajWizyty) {
@@ -83,12 +107,16 @@ public class ControllerKlinika {
         @FXML
         protected void onGenerujButtonClick(){
                 if(imiePacjenta.getText().isEmpty() || nazwiskoPacjenta.getText().isEmpty() || ulicaPacjenta.getText().isEmpty() ||
-                        miastoPacjenta.getText().isEmpty() || kodPocztowyPacjenta.getText().isEmpty() || dataWizyty.getValue() == null ||
-                        godzinaWizyty.getValue() == null || rodzajWizyty.getValue() == null || lekarz.getValue() == null) {
+                        nrBudynku.getText().isEmpty() || miastoPacjenta.getText().isEmpty() ||
+                        kodPocztowyPacjenta.getText().isEmpty() || dataWizyty.getValue() == null || godzinaWizyty.getValue() == null ||
+                        rodzajWizyty.getValue() == null || lekarz.getValue() == null) {
                         wyswietlWiadomoscBrakDanych();
                 }
                 else {
-                        GeneratorPDF.generatePDF(imiePacjenta, nazwiskoPacjenta, ulicaPacjenta,
+                        if(nrMieszkania.getText().isEmpty()) {
+                                nrMieszkania.setText("brak");
+                        }
+                        GeneratorPDF.generatePDF(imiePacjenta, nazwiskoPacjenta, ulicaPacjenta, nrBudynku, nrMieszkania,
                                 miastoPacjenta, kodPocztowyPacjenta,
                                 dataWizyty, godzinaWizyty, rodzajWizyty, lekarz);
                         usunWiadomoscBrakDanych();

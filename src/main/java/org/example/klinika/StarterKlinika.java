@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
+
 //W sumie tutaj nic nie robiłem, tylko plik fxml wskazałem
 public class StarterKlinika extends Application {
     @Override
@@ -15,7 +17,7 @@ public class StarterKlinika extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
 
         // Poprawiona ścieżka do pliku obrazu
-        String imageUrl = StarterKlinika.class.getResource("/org/example/klinika/eskulap.jpg").toExternalForm();
+        String imageUrl = Objects.requireNonNull(StarterKlinika.class.getResource("/org/example/klinika/eskulap.jpg")).toExternalForm();
         stage.getIcons().add(new Image(imageUrl));
 
         stage.setTitle("Aplikacja Klinika");

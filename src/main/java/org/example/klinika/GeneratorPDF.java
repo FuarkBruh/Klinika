@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class GeneratorPDF {
     private static void informacjaSukces() {
@@ -22,8 +23,8 @@ public class GeneratorPDF {
         alert.setContentText("Zapisano do pliku PDF informacje o wizycie!");
         alert.showAndWait();
     }
-    public static void generatePDF(TextField imiePacjenta, TextField nazwiskoPacjenta, TextField ulicaPacjenta,
-                                   TextField miastoPacjenta, TextField kodPocztowyPacjenta, DatePicker dataWizyty,
+    public static void generatePDF(TextField imiePacjenta, TextField nazwiskoPacjenta, TextField ulicaPacjenta, TextField nrBudynku,
+                                   TextField nrMieszkania, TextField miastoPacjenta, TextField kodPocztowyPacjenta, DatePicker dataWizyty,
                                    ComboBox<String> godzinaWizyty, ComboBox<String> rodzajWizyty, ComboBox<String> lekarz) {
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
@@ -39,7 +40,12 @@ public class GeneratorPDF {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Nazwisko: " + nazwiskoPacjenta.getText());
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("ul. " + ulicaPacjenta.getText());
+                if(Objects.equals(nrMieszkania.getText(), "brak")) {
+                    contentStream.showText("ul. " + ulicaPacjenta.getText() + " " + nrBudynku.getText());
+                }
+                else {
+                    contentStream.showText("ul. " + ulicaPacjenta.getText() + " " + nrBudynku.getText() + "/" + nrMieszkania.getText());
+                }
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Miasto: " + miastoPacjenta.getText());
                 contentStream.newLineAtOffset(0, -20);
@@ -66,11 +72,14 @@ public class GeneratorPDF {
 
             LocalDate data = dataWizyty.getValue();
             String dataString = data.toString();
-            String nazwaPliku = imiePacjenta.getText() + "_"+ nazwiskoPacjenta.getText() + dataString;
+            String nazwaPliku = imiePacjenta.getText() + "_" + nazwiskoPacjenta.getText() + dataString;
+            String sciezkaDoZapisu = "wygenerowanePDFy\\";
 
-            document.save(nazwaPliku + ".pdf");
+            document.save(new File( sciezkaDoZapisu + nazwaPliku + ".pdf"));
+
 
             informacjaSukces();
+
 
         } catch (IOException e) {
             e.printStackTrace();
