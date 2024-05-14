@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.util.converter.LocalDateStringConverter;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ControllerKlinika {
         @FXML
@@ -32,6 +34,7 @@ public class ControllerKlinika {
         private ComboBox<String> lekarz;
         @FXML
         private Label brakDanychWiadomosc;
+        private Map<String, Map<String, Map<String, Boolean>>> wizyty = new HashMap<>();
         @FXML
         protected void initialize() {
                 TextFormatter<String> imieFormatter = textFormatterLitery();
@@ -53,7 +56,10 @@ public class ControllerKlinika {
                         }
                 });
 
-                rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
+                // Inicjalizacja ComboBoxa rodzajWizyty
+                if(rodzajWizyty.getValue() != null) {
+                        rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
+                }
         }
 
         private TextFormatter<String> textFormatterLitery() {
@@ -64,8 +70,6 @@ public class ControllerKlinika {
                         return null;
                 });
         }
-
-
 
         protected void specjalizacjaLekarza(String rodzajWizyty) {
                 ObservableList<String> items = lekarz.getItems();
@@ -95,6 +99,7 @@ public class ControllerKlinika {
                                 break;
                 }
         }
+
         @FXML
         protected void wyswietlWiadomoscBrakDanych() {
                 brakDanychWiadomosc.setVisible(true);
@@ -119,7 +124,22 @@ public class ControllerKlinika {
                         GeneratorPDF.generatePDF(imiePacjenta, nazwiskoPacjenta, ulicaPacjenta, nrBudynku, nrMieszkania,
                                 miastoPacjenta, kodPocztowyPacjenta,
                                 dataWizyty, godzinaWizyty, rodzajWizyty, lekarz);
+
+                        // Usunięcie danych z wszystkich pól tekstowych
+                        imiePacjenta.clear();
+                        nazwiskoPacjenta.clear();
+                        ulicaPacjenta.clear();
+                        nrBudynku.clear();
+                        nrMieszkania.clear();
+                        miastoPacjenta.clear();
+                        kodPocztowyPacjenta.clear();
+                        dataWizyty.setValue(null);
+                        godzinaWizyty.setValue(null);
+                        rodzajWizyty.setValue(null);
+                        lekarz.setValue(null);
+
                         usunWiadomoscBrakDanych();
                 }
         }
-    }
+
+}
