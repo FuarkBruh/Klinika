@@ -1,5 +1,6 @@
 package org.example.klinika;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -37,17 +38,7 @@ public class ControllerKlinika {
         private Map<String, Map<String, Map<String, Boolean>>> wizyty = new HashMap<>();
         @FXML
         protected void initialize() {
-                TextFormatter<String> imieFormatter = textFormatterLitery();
-                TextFormatter<String> nazwiskoFormatter = textFormatterLitery();
-                TextFormatter<String> ulicaFormatter = textFormatterLitery();
-                TextFormatter<String> miastoFormatter = textFormatterLitery();
-
-                imiePacjenta.setTextFormatter(imieFormatter);
-                nazwiskoPacjenta.setTextFormatter(nazwiskoFormatter);
-                ulicaPacjenta.setTextFormatter(ulicaFormatter);
-                miastoPacjenta.setTextFormatter(miastoFormatter);
-
-                // Ustawiamy minimalną datę na dzień dzisiejszy
+                // Poprawione ustawienie minimalnej daty
                 dataWizyty.setConverter(new LocalDateStringConverter());
                 dataWizyty.setDayCellFactory(picker -> new DateCell() {
                         public void updateItem(LocalDate date, boolean empty) {
@@ -55,25 +46,16 @@ public class ControllerKlinika {
                                 setDisable(empty || date.isBefore(LocalDate.now()));
                         }
                 });
-
                 // Inicjalizacja ComboBoxa rodzajWizyty
-                if(rodzajWizyty.getValue() != null) {
-                        rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
-                }
+                rodzajWizyty.setItems(FXCollections.observableArrayList(
+                        rodzajWizyty.getItems()));
+                rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
         }
 
-        private TextFormatter<String> textFormatterLitery() {
-                return new TextFormatter<>(change -> {
-                        if (change.getText().matches("[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*")) {
-                                return change;
-                        }
-                        return null;
-                });
-        }
 
         protected void specjalizacjaLekarza(String rodzajWizyty) {
+                System.out.println("Wybrany rodzaj wizyty: " + rodzajWizyty);
                 ObservableList<String> items = lekarz.getItems();
-
                 // Wyczyszczenie listy i dodanie odpowiednich elementów w zależności od rodzaju wizyty
                 // Wiem, że bez sensu trochę to wygląda, ale działa i działać będzie :)
                 items.clear();
