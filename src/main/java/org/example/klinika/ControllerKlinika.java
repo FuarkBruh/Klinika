@@ -36,6 +36,7 @@ public class ControllerKlinika {
         @FXML
         private Label brakDanychWiadomosc;
         private Map<String, Map<String, Map<String, Boolean>>> wizyty = new HashMap<>();
+
         @FXML
         protected void initialize() {
                 // Poprawione ustawienie minimalnej daty
@@ -46,18 +47,24 @@ public class ControllerKlinika {
                                 setDisable(empty || date.isBefore(LocalDate.now()));
                         }
                 });
+
                 // Inicjalizacja ComboBoxa rodzajWizyty
                 rodzajWizyty.setItems(FXCollections.observableArrayList(
                         rodzajWizyty.getItems()));
                 rodzajWizyty.setOnAction(event -> specjalizacjaLekarza(rodzajWizyty.getValue()));
+
+                // Ustawienie DatePicker jako nieaktywny na początku
+                dataWizyty.setDisable(true);
+
+                // Listener do ComboBoxa lekarz, aby włączyć DatePicker po wybraniu lekarza
+                lekarz.valueProperty().addListener((observable, oldValue, newValue) -> {
+                        dataWizyty.setDisable(newValue == null);
+                });
         }
 
-
         protected void specjalizacjaLekarza(String rodzajWizyty) {
-                System.out.println("Wybrany rodzaj wizyty: " + rodzajWizyty);
                 ObservableList<String> items = lekarz.getItems();
                 // Wyczyszczenie listy i dodanie odpowiednich elementów w zależności od rodzaju wizyty
-                // Wiem, że bez sensu trochę to wygląda, ale działa i działać będzie :)
                 items.clear();
                 switch (rodzajWizyty) {
                         case "Analiza wyników badań":
@@ -80,6 +87,8 @@ public class ControllerKlinika {
                                 }
                                 break;
                 }
+                // Resetowanie wyboru lekarza po zmianie rodzaju wizyty
+                lekarz.setValue(null);
         }
 
         @FXML
@@ -92,15 +101,14 @@ public class ControllerKlinika {
         }
 
         @FXML
-        protected void onGenerujButtonClick(){
-                if(imiePacjenta.getText().isEmpty() || nazwiskoPacjenta.getText().isEmpty() || ulicaPacjenta.getText().isEmpty() ||
+        protected void onGenerujButtonClick() {
+                if (imiePacjenta.getText().isEmpty() || nazwiskoPacjenta.getText().isEmpty() || ulicaPacjenta.getText().isEmpty() ||
                         nrBudynku.getText().isEmpty() || miastoPacjenta.getText().isEmpty() ||
                         kodPocztowyPacjenta.getText().isEmpty() || dataWizyty.getValue() == null || godzinaWizyty.getValue() == null ||
                         rodzajWizyty.getValue() == null || lekarz.getValue() == null) {
                         wyswietlWiadomoscBrakDanych();
-                }
-                else {
-                        if(nrMieszkania.getText().isEmpty()) {
+                } else {
+                        if (nrMieszkania.getText().isEmpty()) {
                                 nrMieszkania.setText("brak");
                         }
                         GeneratorPDF.generatePDF(imiePacjenta, nazwiskoPacjenta, ulicaPacjenta, nrBudynku, nrMieszkania,
@@ -119,9 +127,8 @@ public class ControllerKlinika {
                         godzinaWizyty.setValue(null);
                         rodzajWizyty.setValue(null);
                         lekarz.setValue(null);
-
                         usunWiadomoscBrakDanych();
+                        dataWizyty.setDisable(true); // Resetowanie stanu DatePicker po usunięciu danych
                 }
         }
-
 }
