@@ -35,7 +35,8 @@ public class ControllerKlinika {
         private ComboBox<String> lekarz;
         @FXML
         private Label brakDanychWiadomosc;
-        private Map<String, Map<String, Map<String, Boolean>>> wizyty = new HashMap<>();
+        private Map<String, Map<LocalDate, Map<String, Boolean>>> wizyty = new HashMap<>();
+
 
         @FXML
         protected void initialize() {
@@ -60,6 +61,28 @@ public class ControllerKlinika {
                 lekarz.valueProperty().addListener((observable, oldValue, newValue) -> {
                         dataWizyty.setDisable(newValue == null);
                 });
+
+                initializeWizyty();
+        }
+
+        private void initializeWizyty() {
+                ObservableList<String> godziny = godzinaWizyty.getItems();
+
+                // Lista lekarzy
+                ObservableList<String> lekarze = FXCollections.observableArrayList(lekarz.getItems());
+                lekarz.setItems(lekarze);
+
+                for (String lek : lekarze) {
+                        Map<LocalDate, Map<String, Boolean>> terminy = new HashMap<>();
+                        for (LocalDate date = LocalDate.now(); date.isBefore(LocalDate.now().plusMonths(1)); date = date.plusDays(1)) {
+                                Map<String, Boolean> godzinyMap = new HashMap<>();
+                                for (String godz : godziny) {
+                                        godzinyMap.put(godz, false);
+                                }
+                                terminy.put(date, godzinyMap);
+                        }
+                        wizyty.put(lek, terminy);
+                }
         }
 
         protected void specjalizacjaLekarza(String rodzajWizyty) {
